@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "626700965286",
+    "project_id": "needauth-f873e",
+    "storage_bucket": "needauth-f873e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626700965286:android:3a37c8d5c6f31b89742b67",
+        "android_client_info": {
+          "package_name": "com.example.need_mobile_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoYIlf_RBmL-waxSqt0bDq2GNnqzNKoDE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
