@@ -138,7 +138,7 @@ class _BookingCreateScreenState extends State<BookingCreateScreen> {
                   controller: _notesController,
                   maxLines: 3,
                   decoration: InputDecoration(
-                    hintText: 'Anything the business should know?',
+                    hintText: 'Anything the business/employee should know?',
                     filled: true,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(14), borderSide: BorderSide(color: Colors.grey.shade300)),

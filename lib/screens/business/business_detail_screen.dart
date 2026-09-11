@@ -147,27 +147,28 @@ class _BusinessDetailScreenState extends State<BusinessDetailScreen> {
                                   Text('No ratings yet', style: TextStyle(color: Colors.grey.shade600)),
                               ],
                             ),
+                            SizedBox(height: 6),
+                            if (business.reviewCount > 0)
+                              Padding(
+                                padding: const EdgeInsets.only(top: 4),
+                                child: GestureDetector(
+                                  onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (_) => BusinessReviewsScreen(businessId: business.id, businessName: business.name),
+                                  )),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text('See Reviews', style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w600, fontSize: 13)),
+                                      Icon(Icons.chevron_right, color: AppColors.primary, size: 16),
+                                    ],
+                                  ),
+                                ),
+                              ),
                           ],
                         ),
                       ),
                     ],
                   ),
-                  if (business.reviewCount > 0)
-                    Padding(
-                        padding: const EdgeInsets.only(top: 4),
-                        child: GestureDetector(
-                          onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => BusinessReviewsScreen(businessId: business.id, businessName: business.name),
-                          )),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text('See Reviews', style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w600, fontSize: 13)),
-                              Icon(Icons.chevron_right, color: AppColors.primary, size: 16),
-                            ],
-                          ),
-                        ),
-                    ),
                   const SizedBox(height: 20),
                   Divider(color: Colors.grey.shade200),
                   _InfoRow(

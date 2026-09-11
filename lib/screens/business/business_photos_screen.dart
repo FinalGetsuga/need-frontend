@@ -60,7 +60,10 @@ class _BusinessPhotosScreenState extends State<BusinessPhotosScreen> {
   Future<void> _pickAndUploadImage() async {
     if (_images.length >= maxImages) return;
 
-    final picked = await _picker.pickImage(source: ImageSource.gallery, imageQuality: 85);
+    final source = await _showImageSourceSheet();
+    if (source == null) return;
+
+    final picked = await _picker.pickImage(source: source, imageQuality: 85);
     if (picked == null) return;
 
     setState(() {
@@ -100,6 +103,35 @@ class _BusinessPhotosScreenState extends State<BusinessPhotosScreen> {
         _errorMessage = provider.errorMessage ?? 'Failed to delete photo.';
       }
     });
+  }
+
+  Future<ImageSource?> _showImageSourceSheet() {
+    return showModalBottomSheet<ImageSource>(
+        context: context,
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+        builder: (sheetContext) => SafeArea(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Padding(
+                    padding: EdgeInsets.only(top: 16, bottom: 8),
+                    child: Text('Add Photo', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                ),
+                ListTile(
+                  leading: Icon(Icons.camera_alt_outlined, color: AppColors.primary),
+                  title: const Text('Take Photo'),
+                  onTap: () => Navigator.of(sheetContext).pop(ImageSource.camera),
+                ),
+                ListTile(
+                  leading: Icon(Icons.photo_library_outlined, color: AppColors.primary),
+                  title: const Text('Choose from Gallery'),
+                  onTap: () => Navigator.of(sheetContext).pop(ImageSource.gallery),
+                ),
+                const SizedBox(height: 8),
+              ],
+            ),
+        ),
+    );
   }
 
   @override
